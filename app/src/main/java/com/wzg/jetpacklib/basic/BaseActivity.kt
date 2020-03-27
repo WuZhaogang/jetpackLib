@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import java.lang.reflect.ParameterizedType
+
 
 /**
  * 类描述:
@@ -25,7 +27,6 @@ abstract class BaseActivity<T : BaseViewModel> : AppCompatActivity(), IIBaseView
     @LayoutRes
     abstract fun getLayoutId(savedInstanceState: Bundle?): Int
 
-    abstract fun createViewModel(): T?
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,4 +87,9 @@ abstract class BaseActivity<T : BaseViewModel> : AppCompatActivity(), IIBaseView
 
     fun <T : BaseViewModel> getViewModel(clazz: Class<T>) = ViewModelProvider(this).get(clazz)
 
+    private fun createViewModel() = ViewModelProvider(this).get(getTClass())
+
+    open fun getTClass(): Class<T> {
+        return (javaClass.genericSuperclass as ParameterizedType?)!!.actualTypeArguments[0] as Class<T>
+    }
 }

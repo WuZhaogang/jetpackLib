@@ -11,10 +11,6 @@ class MainActivity : BaseActivity<UserViewModel>() {
         return R.layout.activity_main
     }
 
-    override fun createViewModel(): UserViewModel? {
-        return getViewModel(UserViewModel::class.java)
-    }
-
     override fun initView() {
         tvTest.setOnClickListener {
             mViewModel?.login(LoginRequestModel())
