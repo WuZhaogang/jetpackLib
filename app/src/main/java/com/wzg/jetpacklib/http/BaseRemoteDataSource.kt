@@ -2,7 +2,6 @@ package com.wzg.jetpacklib.http
 
 import android.annotation.SuppressLint
 import com.wzg.jetpacklib.basic.IBaseViewModelEvent
-import com.wzg.jetpacklib.basic.OptionT
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver

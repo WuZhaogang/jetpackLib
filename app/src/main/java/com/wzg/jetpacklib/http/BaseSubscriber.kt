@@ -1,8 +1,6 @@
 package com.wzg.jetpacklib.http
 
-import android.util.Log
 import com.wzg.jetpacklib.basic.BaseServerErrorModel
-import com.wzg.jetpacklib.basic.OptionT
 import io.reactivex.observers.DisposableObserver
 import retrofit2.HttpException
 
@@ -25,8 +23,7 @@ class BaseSubscriber<T> constructor(private val requestCallback: RequestCallback
         if (e is HttpException) {
             val bodyString = e.response()?.errorBody()?.string()
             if (bodyString != null) {
-                val baseServerErrorModel = RetrofitClient.getInstance().getGson()
-                        ?.fromJson(bodyString, BaseServerErrorModel::class.java)
+                val baseServerErrorModel = RetrofitClient.getInstance().getGson()?.fromJson(bodyString, BaseServerErrorModel::class.java)
                 if (e is BaseException) {
                     requestCallback.onFail(e)
                 } else {

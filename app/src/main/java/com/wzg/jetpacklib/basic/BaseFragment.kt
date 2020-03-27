@@ -94,10 +94,6 @@ abstract class BaseFragment : Fragment(), IIBaseViewModelEventObserver {
         activity?.finish()
     }
 
-    override fun pop() {
-
-    }
-
     fun <T : BaseViewModel> getViewModel(clazz: Class<T>) = ViewModelProvider(this).get(clazz)
 
 }
