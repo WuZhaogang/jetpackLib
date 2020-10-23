@@ -3,6 +3,8 @@ package com.wzg.jetpacklib
 import android.content.Context
 import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
+import com.orhanobut.logger.AndroidLogAdapter
+import com.orhanobut.logger.Logger
 import com.wzg.jetpacklib.utils.SharedPreferencesUtil
 
 /**
@@ -32,5 +34,10 @@ open class BaseApp : MultiDexApplication() {
         super.onCreate()
         mInstance = this
         SharedPreferencesUtil.init(this)
+        Logger.addLogAdapter(object : AndroidLogAdapter() {
+            override fun isLoggable(priority: Int, tag: String?): Boolean {
+                return BuildConfig.DEBUG
+            }
+        })
     }
 }

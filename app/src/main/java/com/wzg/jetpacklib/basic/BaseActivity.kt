@@ -5,6 +5,8 @@ import android.content.Context
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -17,20 +19,23 @@ import java.lang.reflect.ParameterizedType
  * 创建时间:  2020/3/24
  * 修改备注:  说明本次修改内容
  */
-abstract class BaseActivity<T : BaseViewModel> : AppCompatActivity(), IIBaseViewModelEventObserver {
+abstract class BaseActivity<T : BaseViewModel, D : ViewDataBinding> : AppCompatActivity(),
+    IIBaseViewModelEventObserver {
+
     private var loadDialog: ProgressDialog? = null
 
     var mViewModel: T? = null
+
+    var mDataBinding: D? = null
 
     override fun getLContext(): Context = this
 
     @LayoutRes
     abstract fun getLayoutId(savedInstanceState: Bundle?): Int
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getLayoutId(savedInstanceState))
+        mDataBinding = DataBindingUtil.setContentView(this, getLayoutId(savedInstanceState))
         mViewModel = createViewModel()
         initView()
         initViewModel(mViewModel)
@@ -86,6 +91,7 @@ abstract class BaseActivity<T : BaseViewModel> : AppCompatActivity(), IIBaseView
     }
 
     fun <T : BaseViewModel> getViewModel(clazz: Class<T>) = ViewModelProvider(this).get(clazz)
+
 
     private fun createViewModel() = ViewModelProvider(this).get(getTClass())
 
