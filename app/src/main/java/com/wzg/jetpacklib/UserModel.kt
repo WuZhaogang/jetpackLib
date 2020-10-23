@@ -13,7 +13,7 @@ class UserModel {
     var id: String? = null
     var username: String? = null
 
-    fun testClick(view: View){
-        Logger.e("dasdasdadasd")
+    fun testClick(view: View,content:String?){
+        Logger.e("dasdasdadasd   "+ content)
     }
 }
