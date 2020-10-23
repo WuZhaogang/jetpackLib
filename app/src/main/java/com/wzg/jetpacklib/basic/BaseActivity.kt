@@ -36,6 +36,7 @@ abstract class BaseActivity<T : BaseViewModel, D : ViewDataBinding> : AppCompatA
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mDataBinding = DataBindingUtil.setContentView(this, getLayoutId(savedInstanceState))
+        mDataBinding?.lifecycleOwner = this
         mViewModel = createViewModel()
         initView()
         initViewModel(mViewModel)

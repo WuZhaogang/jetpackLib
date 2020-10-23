@@ -18,6 +18,9 @@ class UserViewModel : BaseViewModel() {
     var userResp = MutableLiveData<UserResp>()
 
 
+    fun testClick(view: View,content:String?){
+        Logger.e("dasdasdadasd")
+    }
     fun login(loginRequestModel: LoginRequestModel) {
         userDataSource.login(loginRequestModel, object : RequestCallback<UserResp> {
             override fun onSuccess(data: UserResp) {

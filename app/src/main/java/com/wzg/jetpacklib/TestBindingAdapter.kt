@@ -1,7 +1,10 @@
 package com.wzg.jetpacklib
 
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.Observable
+import androidx.lifecycle.MutableLiveData
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.orhanobut.logger.Logger
 import com.wzg.jetpacklib.basic.BaseRecyclerViewAdapter
 import com.wzg.jetpacklib.databinding.ItemTestBindingBinding
 

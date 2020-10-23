@@ -5,6 +5,7 @@
     <data>
 
         <import type="com.wzg.jetpacklib.UserModel"/>
+        <import type="com.wzg.jetpacklib.UserViewModel"/>
 
         <variable
             name="mainActivity"
@@ -13,6 +14,10 @@
         <variable
             name="userModel"
             type="UserModel" />
+
+        <variable
+            name="userViewModel"
+            type="UserViewModel" />
 
     </data>
 
@@ -26,9 +31,15 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="@color/colorAccent"
-            android:text="@{userModel.username}"
-            android:onClick="@{(view)->userModel.testClick(view,`aaaaaaa`)}"
+            android:text="@={userModel.username}"
+            android:onClick="@{(view)->userViewModel.testClick(view,`aaaaaaa`)}"
             android:id="@+id/tvTest" />
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@={userModel.username}"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"

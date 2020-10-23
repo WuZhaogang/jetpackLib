@@ -3,6 +3,7 @@
 
     <data>
         <import type="com.wzg.jetpacklib.UserModel"/>
+
         <variable
             name="userModel"
             type="UserModel" />
@@ -16,6 +17,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{userModel.username}"/>
+            android:text="@={userModel.username}"/>
     </LinearLayout>
 </layout>

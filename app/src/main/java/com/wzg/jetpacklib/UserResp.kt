@@ -12,5 +12,4 @@ import com.orhanobut.logger.Logger
 class UserResp {
     var userModel = UserModel()
 
-
 }
